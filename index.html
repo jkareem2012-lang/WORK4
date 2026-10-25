@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تدريب الكلمات التفاعلي</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #2b2b2b;
+            font-family: system-ui, -apple-system, sans-serif;
+            touch-action: manipulation;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .word-card {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s ease;
+        }
+
+        /* تأثير لمس للشاشة على الموبايل */
+        .word-card:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- صورة الكلمة -->
+        <img src="WORK.jpeg" alt="كلمة التدريب" class="word-card" id="wordImage">
+    </div>
+
+    <!-- عنصر الصوت المخفي -->
+    <audio id="wordAudio" preload="auto">
+        <source src="AUD-20261025-WA0047.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        const wordImage = document.getElementById('wordImage');
+        const wordAudio = document.getElementById('wordAudio');
+
+        // تشغيل الصوت مباشرة عند الضغط على الصورة
+        wordImage.addEventListener('click', () => {
+            wordAudio.currentTime = 0; // إعادة من البداية لو اتضغط سريعاً
+            wordAudio.play().catch(error => {
+                console.log("حدث خطأ في تشغيل الصوت:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
